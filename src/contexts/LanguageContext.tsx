@@ -165,7 +165,7 @@ export const translations: Translations = {
   aboutTitle: {
     en: 'About',
     es: 'Acerca de',
-    ru: 'О нас',
+    ru: 'Обо мне',
   },
   aboutDescription: {
     en: 'SleepCalculator was created to help people understand and optimize their sleep cycles. We believe that quality sleep is fundamental to health, productivity, and overall well-being.',
