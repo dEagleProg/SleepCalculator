@@ -8,16 +8,15 @@ type CalculatorMode = 'sleep' | 'wake';
 
 const SleepCalculator = () => {
   const { t } = useLanguage();
-  const [mode, setMode] = useState<CalculatorMode>('sleep');
+  const [mode, setMode] = useState<CalculatorMode>('wake');
   const [hour, setHour] = useState<number>(9);
   const [minute, setMinute] = useState<number>(0);
-  const [period, setPeriod] = useState<'AM' | 'PM'>('AM');
   const [fallAsleepTime, setFallAsleepTime] = useState<number>(14); // Minutes to fall asleep
   const [cycleResults, setCycleResults] = useState<Date[]>([]);
   const [calculated, setCalculated] = useState<boolean>(false);
 
-  // Generate hour options
-  const hours = Array.from({ length: 12 }, (_, i) => i === 0 ? 12 : i);
+  // Generate hour options (0-23)
+  const hours = Array.from({ length: 24 }, (_, i) => i);
   
   // Generate minute options (0, 5, 10, ..., 55)
   const minutes = Array.from({ length: 12 }, (_, i) => i * 5);
@@ -26,16 +25,8 @@ const SleepCalculator = () => {
     // Convert time input to a date object
     const now = new Date();
     
-    // Set the hours based on the input
-    let adjustedHour = hour;
-    if (period === 'PM' && hour !== 12) {
-      adjustedHour += 12;
-    }
-    if (period === 'AM' && hour === 12) {
-      adjustedHour = 0;
-    }
-    
-    now.setHours(adjustedHour, minute, 0, 0);
+    // Set the hours and minutes
+    now.setHours(hour, minute, 0, 0);
     
     const results: Date[] = [];
     
@@ -47,7 +38,7 @@ const SleepCalculator = () => {
       sleepTime = new Date(sleepTime.getTime() + fallAsleepTime * 60 * 1000);
       
       // Calculate wake-up times for 4-6 complete sleep cycles (90 minutes each)
-      for (let i = 6; i >= 4; i--) {
+      for (let i = 4; i <= 6; i++) {
         const wakeTime = new Date(sleepTime.getTime() + i * 90 * 60 * 1000);
         results.push(wakeTime);
       }
@@ -57,7 +48,7 @@ const SleepCalculator = () => {
       // If we're calculating when to go to sleep
       let wakeTime = new Date(now.getTime());
       
-      // Calculate bedtimes for 4-6 complete sleep cycles (90 minutes each)
+      // Calculate bedtimes for 6-4 complete sleep cycles (90 minutes each)
       for (let i = 6; i >= 4; i--) {
         // Subtract sleep cycles plus time to fall asleep
         const bedTime = new Date(wakeTime.getTime() - (i * 90 * 60 * 1000 + fallAsleepTime * 60 * 1000));
@@ -74,13 +65,11 @@ const SleepCalculator = () => {
   const toggleMode = () => {
     setMode(mode === 'sleep' ? 'wake' : 'sleep');
     if (mode === 'sleep') {
-      setHour(11);
+      setHour(9); // 9 AM
       setMinute(0);
-      setPeriod('PM');
     } else {
-      setHour(9);
+      setHour(23); // 11 PM
       setMinute(0);
-      setPeriod('AM');
     }
     setCycleResults([]);
     setCalculated(false);
@@ -92,7 +81,7 @@ const SleepCalculator = () => {
         <div className="flex flex-col gap-8">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <h2 className="text-2xl md:text-3xl font-display font-semibold text-night-900">
-              {mode === 'sleep' ? t('wantToWake') : t('wantToSleep')}
+              {mode === 'sleep' ? t('wantToSleep') : t('wantToWake')}
             </h2>
             
             <button 
@@ -114,7 +103,7 @@ const SleepCalculator = () => {
               onChange={(e) => setHour(parseInt(e.target.value))}
             >
               {hours.map((h) => (
-                <option key={h} value={h}>{h}</option>
+                <option key={h} value={h}>{h.toString().padStart(2, '0')}</option>
               ))}
             </select>
             
@@ -129,22 +118,13 @@ const SleepCalculator = () => {
                 <option key={m} value={m}>{m.toString().padStart(2, '0')}</option>
               ))}
             </select>
-            
-            <select 
-              className="time-period"
-              value={period}
-              onChange={(e) => setPeriod(e.target.value as 'AM' | 'PM')}
-            >
-              <option value="AM">AM</option>
-              <option value="PM">PM</option>
-            </select>
           </div>
           
           <div className="text-center">
             <button
               onClick={calculateSleepCycles}
               className="px-8 py-3 bg-sleep-600 hover:bg-sleep-700 text-white font-medium rounded-full
-                        transition-all duration-300 shadow-md hover:shadow-lg animate-pulse-soft"
+                        transition-all duration-300 shadow-md hover:shadow-lg"
             >
               {t('calculate')}
             </button>
