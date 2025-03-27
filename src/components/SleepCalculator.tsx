@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Clock } from 'lucide-react';
 import SleepCycleDisplay from './SleepCycleDisplay';
@@ -10,9 +9,9 @@ type CalculatorMode = 'sleep' | 'wake';
 const SleepCalculator = () => {
   const { t } = useLanguage();
   const [mode, setMode] = useState<CalculatorMode>('sleep');
-  const [hour, setHour] = useState<number>(10);
+  const [hour, setHour] = useState<number>(9);
   const [minute, setMinute] = useState<number>(0);
-  const [period, setPeriod] = useState<'AM' | 'PM'>('PM');
+  const [period, setPeriod] = useState<'AM' | 'PM'>('AM');
   const [fallAsleepTime, setFallAsleepTime] = useState<number>(14); // Minutes to fall asleep
   const [cycleResults, setCycleResults] = useState<Date[]>([]);
   const [calculated, setCalculated] = useState<boolean>(false);
@@ -48,7 +47,7 @@ const SleepCalculator = () => {
       sleepTime = new Date(sleepTime.getTime() + fallAsleepTime * 60 * 1000);
       
       // Calculate wake-up times for 4-6 complete sleep cycles (90 minutes each)
-      for (let i = 4; i <= 6; i++) {
+      for (let i = 6; i >= 4; i--) {
         const wakeTime = new Date(sleepTime.getTime() + i * 90 * 60 * 1000);
         results.push(wakeTime);
       }
@@ -59,7 +58,7 @@ const SleepCalculator = () => {
       let wakeTime = new Date(now.getTime());
       
       // Calculate bedtimes for 4-6 complete sleep cycles (90 minutes each)
-      for (let i = 4; i <= 6; i++) {
+      for (let i = 6; i >= 4; i--) {
         // Subtract sleep cycles plus time to fall asleep
         const bedTime = new Date(wakeTime.getTime() - (i * 90 * 60 * 1000 + fallAsleepTime * 60 * 1000));
         results.push(bedTime);
@@ -74,6 +73,15 @@ const SleepCalculator = () => {
 
   const toggleMode = () => {
     setMode(mode === 'sleep' ? 'wake' : 'sleep');
+    if (mode === 'sleep') {
+      setHour(11);
+      setMinute(0);
+      setPeriod('PM');
+    } else {
+      setHour(9);
+      setMinute(0);
+      setPeriod('AM');
+    }
     setCycleResults([]);
     setCalculated(false);
   };
@@ -84,7 +92,7 @@ const SleepCalculator = () => {
         <div className="flex flex-col gap-8">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <h2 className="text-2xl md:text-3xl font-display font-semibold text-night-900">
-              {mode === 'sleep' ? t('wantToSleep') : t('wantToWake')}
+              {mode === 'sleep' ? t('wantToWake') : t('wantToSleep')}
             </h2>
             
             <button 
@@ -99,7 +107,7 @@ const SleepCalculator = () => {
             </button>
           </div>
           
-          <div className="time-picker">
+          <div className="time-picker flex justify-center items-center">
             <select 
               className="time-select"
               value={hour}
