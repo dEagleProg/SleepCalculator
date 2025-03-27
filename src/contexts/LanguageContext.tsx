@@ -126,9 +126,9 @@ export const translations: Translations = {
     ru: 'Все права защищены.',
   },
   madeWith: {
-    en: 'Made with',
-    es: 'Hecho con',
-    ru: 'Сделано с',
+    en: 'Made by dEagle',
+    es: 'Hecho por dEagle',
+    ru: 'Сделано by dEagle',
   },
   forBetterSleep: {
     en: 'for better sleep',
