@@ -1,12 +1,15 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Navbar = () => {
+  const { t } = useLanguage();
+  
   const navItems = [
-    { name: 'Home', path: '/' },
-    { name: 'Sleep Tips', path: '/sleep-tips' },
-    { name: 'About', path: '/about' },
+    { name: t('home'), path: '/' },
+    { name: t('sleepTips'), path: '/sleep-tips' },
+    { name: t('about'), path: '/about' },
   ];
 
   return (

@@ -3,10 +3,12 @@ import React, { useState } from 'react';
 import { Clock } from 'lucide-react';
 import SleepCycleDisplay from './SleepCycleDisplay';
 import { toast } from 'sonner';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 type CalculatorMode = 'sleep' | 'wake';
 
 const SleepCalculator = () => {
+  const { t } = useLanguage();
   const [mode, setMode] = useState<CalculatorMode>('sleep');
   const [hour, setHour] = useState<number>(10);
   const [minute, setMinute] = useState<number>(0);
@@ -51,7 +53,7 @@ const SleepCalculator = () => {
         results.push(wakeTime);
       }
       
-      toast.success('Wake-up times calculated!');
+      toast.success(t('wakeupCalculated'));
     } else {
       // If we're calculating when to go to sleep
       let wakeTime = new Date(now.getTime());
@@ -63,7 +65,7 @@ const SleepCalculator = () => {
         results.push(bedTime);
       }
       
-      toast.success('Bedtimes calculated!');
+      toast.success(t('bedtimeCalculated'));
     }
     
     setCycleResults(results);
@@ -82,7 +84,7 @@ const SleepCalculator = () => {
         <div className="flex flex-col gap-8">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <h2 className="text-2xl md:text-3xl font-display font-semibold text-night-900">
-              {mode === 'sleep' ? 'I want to go to sleep at...' : 'I want to wake up at...'}
+              {mode === 'sleep' ? t('wantToSleep') : t('wantToWake')}
             </h2>
             
             <button 
@@ -90,7 +92,7 @@ const SleepCalculator = () => {
               className="flex items-center gap-2 px-4 py-2 rounded-full border border-sleep-200 
                         bg-white hover:bg-sleep-50 text-sleep-800 transition-all duration-300"
             >
-              <span>{mode === 'sleep' ? 'Calculate Bedtime' : 'Calculate Wake Up'}</span>
+              <span>{mode === 'sleep' ? t('calculateBedtime') : t('calculateWakeUp')}</span>
               <span className="bg-sleep-100 p-1 rounded-full">
                 <Clock size={16} className="text-sleep-700" />
               </span>
@@ -136,7 +138,7 @@ const SleepCalculator = () => {
               className="px-8 py-3 bg-sleep-600 hover:bg-sleep-700 text-white font-medium rounded-full
                         transition-all duration-300 shadow-md hover:shadow-lg animate-pulse-soft"
             >
-              Calculate
+              {t('calculate')}
             </button>
           </div>
           
@@ -149,10 +151,10 @@ const SleepCalculator = () => {
           
           <div className="text-sm text-night-500 mt-4">
             <p>
-              A good night's sleep consists of 5-6 complete sleep cycles. Each sleep cycle lasts approximately 90 minutes.
+              {t('sleepCycleInfo')}
             </p>
             <p className="mt-2">
-              This calculator assumes it takes about {fallAsleepTime} minutes to fall asleep after going to bed.
+              {t('fallAsleepInfo')}
             </p>
           </div>
         </div>

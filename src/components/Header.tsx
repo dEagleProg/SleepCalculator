@@ -2,6 +2,7 @@
 import React from 'react';
 import { MoonIcon } from 'lucide-react';
 import Navbar from './Navbar';
+import LanguageSwitcher from './LanguageSwitcher';
 
 const Header = () => {
   return (
@@ -17,7 +18,10 @@ const Header = () => {
             </h1>
           </div>
           
-          <Navbar />
+          <div className="flex items-center gap-4">
+            <Navbar />
+            <LanguageSwitcher />
+          </div>
         </div>
       </div>
     </header>
