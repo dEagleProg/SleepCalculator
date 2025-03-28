@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Clock } from 'lucide-react';
 import SleepCycleDisplay from './SleepCycleDisplay';
 import { toast } from 'sonner';
@@ -13,6 +13,7 @@ const SleepCalculator = () => {
   const [minute, setMinute] = useState(0);
   const [fallAsleepTime] = useState(14);
   const [cycleResults, setCycleResults] = useState<Date[]>([]);
+  const resultsRef = useRef<HTMLDivElement>(null);
 
   const hours = Array.from({ length: 24 }, (_, i) => i);
   const minutes = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55];
@@ -29,13 +30,18 @@ const SleepCalculator = () => {
       toast.success(t('wakeupCalculated'));
     } else {
       const wakeTime = baseTime;
-      for (let i = 4; i <= 6; i++) { // Изменили порядок с 6->4 на 4->6
+      for (let i = 4; i <= 6; i++) {
         results.push(new Date(wakeTime - (i * 90 * 60 * 1000 + fallAsleepTime * 60 * 1000)));
       }
       toast.success(t('bedtimeCalculated'));
     }
 
     setCycleResults(results);
+    
+    // Плавная прокрутка к результатам
+    setTimeout(() => {
+      resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
   };
 
   const toggleMode = () => {
@@ -95,7 +101,9 @@ const SleepCalculator = () => {
             {t('calculate')}
           </button>
 
-          {cycleResults.length > 0 && <SleepCycleDisplay times={cycleResults} mode={mode} />}
+          <div ref={resultsRef}>
+            {cycleResults.length > 0 && <SleepCycleDisplay times={cycleResults} mode={mode} />}
+          </div>
 
           <p className="text-sm text-night-500">
             {t('sleepCycleInfo')} {t('fallAsleepInfo')}
