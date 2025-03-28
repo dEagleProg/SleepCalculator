@@ -8,143 +8,98 @@ type CalculatorMode = 'sleep' | 'wake';
 
 const SleepCalculator = () => {
   const { t } = useLanguage();
-  const [mode, setMode] = useState<CalculatorMode>('wake');
-  const [hour, setHour] = useState<number>(9);
-  const [minute, setMinute] = useState<number>(0);
-  const [fallAsleepTime, setFallAsleepTime] = useState<number>(14); // Minutes to fall asleep
+  const [mode, setMode] = useState<CalculatorMode>('sleep');
+  const [hour, setHour] = useState(0);
+  const [minute, setMinute] = useState(0);
+  const [fallAsleepTime] = useState(14);
   const [cycleResults, setCycleResults] = useState<Date[]>([]);
-  const [calculated, setCalculated] = useState<boolean>(false);
 
-  // Generate hour options (0-23)
   const hours = Array.from({ length: 24 }, (_, i) => i);
-  
-  // Generate minute options (0, 5, 10, ..., 55)
-  const minutes = Array.from({ length: 12 }, (_, i) => i * 5);
+  const minutes = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55];
 
   const calculateSleepCycles = () => {
-    // Convert time input to a date object
-    const now = new Date();
-    
-    // Set the hours and minutes
-    now.setHours(hour, minute, 0, 0);
-    
+    const baseTime = new Date().setHours(hour, minute, 0, 0);
     const results: Date[] = [];
-    
+
     if (mode === 'sleep') {
-      // If we're calculating when to wake up
-      let sleepTime = new Date(now.getTime());
-      
-      // Add time to fall asleep
-      sleepTime = new Date(sleepTime.getTime() + fallAsleepTime * 60 * 1000);
-      
-      // Calculate wake-up times for 4-6 complete sleep cycles (90 minutes each)
+      const sleepTime = baseTime + fallAsleepTime * 60 * 1000;
       for (let i = 4; i <= 6; i++) {
-        const wakeTime = new Date(sleepTime.getTime() + i * 90 * 60 * 1000);
-        results.push(wakeTime);
+        results.push(new Date(sleepTime + i * 90 * 60 * 1000));
       }
-      
       toast.success(t('wakeupCalculated'));
     } else {
-      // If we're calculating when to go to sleep
-      let wakeTime = new Date(now.getTime());
-      
-      // Calculate bedtimes for 6-4 complete sleep cycles (90 minutes each)
-      for (let i = 6; i >= 4; i--) {
-        // Subtract sleep cycles plus time to fall asleep
-        const bedTime = new Date(wakeTime.getTime() - (i * 90 * 60 * 1000 + fallAsleepTime * 60 * 1000));
-        results.push(bedTime);
+      const wakeTime = baseTime;
+      for (let i = 4; i <= 6; i++) { // Изменили порядок с 6->4 на 4->6
+        results.push(new Date(wakeTime - (i * 90 * 60 * 1000 + fallAsleepTime * 60 * 1000)));
       }
-      
       toast.success(t('bedtimeCalculated'));
     }
-    
+
     setCycleResults(results);
-    setCalculated(true);
   };
 
   const toggleMode = () => {
     setMode(mode === 'sleep' ? 'wake' : 'sleep');
-    if (mode === 'sleep') {
-      setHour(9); // 9 AM
-      setMinute(0);
-    } else {
-      setHour(23); // 11 PM
-      setMinute(0);
-    }
+    setHour(mode === 'sleep' ? 9 : 23);
+    setMinute(0);
     setCycleResults([]);
-    setCalculated(false);
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto">
-      <div className="sleep-card p-8 md:p-10 animate-fade-in">
-        <div className="flex flex-col gap-8">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-            <h2 className="text-2xl md:text-3xl font-display font-semibold text-night-900">
+    <div className="max-w-4xl mx-auto p-6">
+      <div className="sleep-card p-6 rounded-lg shadow-md bg-white">
+        <div className="flex flex-col gap-6">
+          <div className="flex justify-between items-center">
+            <h2 className="text-2xl font-semibold text-night-900">
               {mode === 'sleep' ? t('wantToSleep') : t('wantToWake')}
             </h2>
-            
-            <button 
+            <button
               onClick={toggleMode}
-              className="flex items-center gap-2 px-4 py-2 rounded-full border border-sleep-200 
-                        bg-white hover:bg-sleep-50 text-sleep-800 transition-all duration-300"
+              className="flex items-center gap-2 px-4 py-2 rounded-full border border-sleep-200 bg-white hover:bg-sleep-50 text-sleep-800"
             >
-              <span>{mode === 'sleep' ? t('calculateBedtime') : t('calculateWakeUp')}</span>
-              <span className="bg-sleep-100 p-1 rounded-full">
-                <Clock size={16} className="text-sleep-700" />
-              </span>
+              {mode === 'sleep' ? t('calculateBedtime') : t('calculateWakeUp')}
+              <Clock size={16} className="text-sleep-700" />
             </button>
           </div>
-          
-          <div className="time-picker flex justify-center items-center">
-            <select 
-              className="time-select"
+
+          <div className="flex justify-center gap-2">
+            <select
               value={hour}
-              onChange={(e) => setHour(parseInt(e.target.value))}
+              onChange={(e) => setHour(+e.target.value)}
+              className="p-2 border rounded-md"
             >
               {hours.map((h) => (
-                <option key={h} value={h}>{h.toString().padStart(2, '0')}</option>
+                <option key={h} value={h}>
+                  {h.toString().padStart(2, '0')}
+                </option>
               ))}
             </select>
-            
-            <span className="time-divider">:</span>
-            
-            <select 
-              className="time-select"
+            <span className="text-2xl">:</span>
+            <select
               value={minute}
-              onChange={(e) => setMinute(parseInt(e.target.value))}
+              onChange={(e) => setMinute(+e.target.value)}
+              className="p-2 border rounded-md"
             >
               {minutes.map((m) => (
-                <option key={m} value={m}>{m.toString().padStart(2, '0')}</option>
+                <option key={m} value={m}>
+                  {m.toString().padStart(2, '0')}
+                </option>
               ))}
             </select>
           </div>
-          
-          <div className="text-center">
-            <button
-              onClick={calculateSleepCycles}
-              className="px-8 py-3 bg-sleep-600 hover:bg-sleep-700 text-white font-medium rounded-full
-                        transition-all duration-300 shadow-md hover:shadow-lg"
-            >
-              {t('calculate')}
-            </button>
-          </div>
-          
-          {calculated && (
-            <SleepCycleDisplay 
-              times={cycleResults} 
-              mode={mode} 
-            />
-          )}
-          
-          <div className="text-sm text-night-500 mt-4">
-            <p>
-              {t('sleepCycleInfo')}
-            </p>
-            <p className="mt-2">
-              {t('fallAsleepInfo')}
-            </p>
-          </div>
+
+          <button
+            onClick={calculateSleepCycles}
+            className="px-6 py-2 bg-sleep-600 hover:bg-sleep-700 text-white rounded-full"
+          >
+            {t('calculate')}
+          </button>
+
+          {cycleResults.length > 0 && <SleepCycleDisplay times={cycleResults} mode={mode} />}
+
+          <p className="text-sm text-night-500">
+            {t('sleepCycleInfo')} {t('fallAsleepInfo')}
+          </p>
         </div>
       </div>
     </div>
