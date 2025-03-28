@@ -18,9 +18,9 @@ export const translations: Translations = {
     ru: 'Главная',
   },
   sleepTips: {
-    en: 'Sleep Tips',
-    es: 'Consejos de Sueño',
-    ru: 'Советы по Сну',
+    en: 'Sleep tips',
+    es: 'Consejos de sueño',
+    ru: 'Советы для сна',
   },
   about: {
     en: 'About',
@@ -29,14 +29,14 @@ export const translations: Translations = {
   },
   // Calculator
   calculateBedtime: {
-    en: 'Calculate Bedtime',
-    es: 'Calcular Hora de Dormir',
-    ru: 'Рассчитать Время Сна',
+    en: 'Calculate bedtime',
+    es: 'Calcular hora de dormir',
+    ru: 'Рассчитать время сна',
   },
   calculateWakeUp: {
-    en: 'Calculate Wake Up',
-    es: 'Calcular Despertador',
-    ru: 'Рассчитать Пробуждение',
+    en: 'Calculate wake up',
+    es: 'Calcular despertador',
+    ru: 'Рассчитать пробуждение',
   },
   calculate: {
     en: 'Calculate',
@@ -165,7 +165,7 @@ export const translations: Translations = {
   aboutTitle: {
     en: 'About',
     es: 'Acerca de',
-    ru: 'О нас',
+    ru: 'Про',
   },
   aboutDescription: {
     en: 'SleepCalculator was created to help people understand and optimize their sleep cycles. We believe that quality sleep is fundamental to health, productivity, and overall well-being.',
