@@ -2,6 +2,7 @@ import React from 'react';
 import { MoonIcon } from 'lucide-react';
 import Navbar from './Navbar';
 import LanguageSwitcher from './LanguageSwitcher';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
@@ -10,10 +11,12 @@ const Header = () => {
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex items-center gap-3">
             <MoonIcon size={24} className="text-sleep-600" />
-            <h1 className="text-2xl font-display font-bold text-night-900">
-              SleepCalculator
-              <div className="text-xs font-normal text-night-700 mt-1">by dEagle</div>
-            </h1>
+            <Link to="/" className="hover:opacity-80 transition-opacity">
+              <h1 className="text-2xl font-display font-bold text-night-900">
+                SleepCalculator
+                <div className="text-xs font-normal text-night-700 mt-1">by dEagle</div>
+              </h1>
+            </Link>
           </div>
           
           <div className="flex items-center gap-4">
