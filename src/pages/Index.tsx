@@ -20,7 +20,9 @@ const Index = () => {
         <Header />
         
         <main className="flex-grow container mx-auto px-4 py-8">
-          <section className="mb-16 text-center max-w-3xl mx-auto">
+          <SleepCalculator />
+          
+          <section className="mb-16 text-center max-w-3xl mx-auto mt-16">
             <h1 className="text-4xl md:text-5xl font-display font-bold text-night-900 mb-4 animate-fade-in">
               {t('optimizeSleep')} <span className="text-sleep-600">{t('sleepCycles')}</span>
             </h1>
@@ -52,8 +54,6 @@ const Index = () => {
               </div>
             </div>
           </section>
-          
-          <SleepCalculator />
           
           <section className="mt-20 max-w-4xl mx-auto">
             <h2 className="text-2xl md:text-3xl font-display font-semibold text-night-900 mb-6 text-center">
