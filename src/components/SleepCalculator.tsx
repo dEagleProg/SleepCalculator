@@ -40,7 +40,7 @@ const SleepCalculator = () => {
 
   const toggleMode = () => {
     setMode(mode === 'sleep' ? 'wake' : 'sleep');
-    setHour(mode === 'sleep' ? 9 : 23);
+    setHour(mode === 'sleep' ? 9 : 24);
     setMinute(0);
     setCycleResults([]);
   };
