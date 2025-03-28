@@ -19,8 +19,8 @@ const SleepCycleDisplay: React.FC<SleepCycleDisplayProps> = ({ times, mode }) =>
   };
 
   const getCycleQuality = (index: number): string => {
-    // For 4, 5, and 6 cycles
-    const qualityMap = [t('good'), t('ideal'), t('best')];
+    // For 4, 5, and 6 cycles (first item is 6 cycles, last is 4)
+    const qualityMap = [t('best'), t('ideal'), t('good')];
     return qualityMap[index];
   };
 
@@ -47,7 +47,7 @@ const SleepCycleDisplay: React.FC<SleepCycleDisplayProps> = ({ times, mode }) =>
             </div>
             <div className="text-2xl font-semibold text-night-900">{formatTime(time)}</div>
             <div className="text-sm font-medium text-sleep-700">
-              {getCycleQuality(mode === 'sleep' ? index : 2 - index)} • {mode === 'sleep' ? 4 + index : 6 - index} {t('cycles')}
+              {getCycleQuality(mode === 'sleep' ? 2 - index : index)} • {mode === 'sleep' ? 6 - index : 4 + index} {t('cycles')}
             </div>
           </div>
         ))}

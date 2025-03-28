@@ -88,6 +88,15 @@
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-slate-50;
+  }
+
+  p {
+    @apply text-slate-200;
   }
 
   .glass-card {
@@ -120,5 +129,5 @@
 }
 
 .time-period {
-  @apply appearance-none bg-white border border-sleep-200 rounded-lg px-2 py-2 text-lg font-medium text-night-800 focus:outline-none focus:ring-2 focus:ring-sleep-400 focus:border-sleep-400 min-w-[60px] text-center;
+  @apply appearance-none bg-white border border-sleep-200 rounded-lg px-2 py-2 text-lg font-medium text-night-800 focus:outline-none focus:ring-2 focus:ring-sleep-400 focus:border-sleep-400;
 }

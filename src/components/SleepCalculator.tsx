@@ -8,7 +8,7 @@ type CalculatorMode = 'sleep' | 'wake';
 
 const SleepCalculator = () => {
   const { t } = useLanguage();
-  const [mode, setMode] = useState<CalculatorMode>('wake');
+  const [mode, setMode] = useState<CalculatorMode>('sleep');
   const [hour, setHour] = useState<number>(9);
   const [minute, setMinute] = useState<number>(0);
   const [fallAsleepTime, setFallAsleepTime] = useState<number>(14); // Minutes to fall asleep
@@ -65,10 +65,10 @@ const SleepCalculator = () => {
   const toggleMode = () => {
     setMode(mode === 'sleep' ? 'wake' : 'sleep');
     if (mode === 'sleep') {
-      setHour(9); // 9 AM
+      setHour(23); // 11 PM
       setMinute(0);
     } else {
-      setHour(23); // 11 PM
+      setHour(9); // 9 AM
       setMinute(0);
     }
     setCycleResults([]);
