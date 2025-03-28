@@ -62,11 +62,11 @@ const SleepCalculator = () => {
             </button>
           </div>
 
-          <div className="flex justify-center gap-2">
+          <div className="flex justify-center gap-3 items-center">
             <select
               value={hour}
               onChange={(e) => setHour(+e.target.value)}
-              className="p-1.5 text-sm border rounded-md"
+              className="appearance-none bg-white border-2 border-sleep-200 rounded-full px-4 py-2 text-lg font-medium text-night-800 focus:outline-none focus:border-sleep-400 focus:ring-2 focus:ring-sleep-100 transition-all duration-200 cursor-pointer hover:border-sleep-300 min-w-[90px] text-center"
             >
               {hours.map((h) => (
                 <option key={h} value={h}>
@@ -74,11 +74,11 @@ const SleepCalculator = () => {
                 </option>
               ))}
             </select>
-            <span className="text-xl">:</span>
+            <span className="text-2xl font-medium text-night-700">:</span>
             <select
               value={minute}
               onChange={(e) => setMinute(+e.target.value)}
-              className="p-1.5 text-sm border rounded-md"
+              className="appearance-none bg-white border-2 border-sleep-200 rounded-full px-4 py-2 text-lg font-medium text-night-800 focus:outline-none focus:border-sleep-400 focus:ring-2 focus:ring-sleep-100 transition-all duration-200 cursor-pointer hover:border-sleep-300 min-w-[90px] text-center"
             >
               {minutes.map((m) => (
                 <option key={m} value={m}>
