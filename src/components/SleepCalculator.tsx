@@ -55,10 +55,10 @@ const SleepCalculator = () => {
             </h2>
             <button
               onClick={toggleMode}
-              className="flex items-center gap-2 px-4 py-2 rounded-full border border-sleep-200 bg-white hover:bg-sleep-50 text-sleep-800"
+              className="flex items-center gap-2 px-3 py-1.5 text-sm rounded-full border border-sleep-200 bg-white hover:bg-sleep-50 text-sleep-800"
             >
               {mode === 'sleep' ? t('calculateBedtime') : t('calculateWakeUp')}
-              <Clock size={16} className="text-sleep-700" />
+              <Clock size={14} className="text-sleep-700" />
             </button>
           </div>
 
@@ -66,7 +66,7 @@ const SleepCalculator = () => {
             <select
               value={hour}
               onChange={(e) => setHour(+e.target.value)}
-              className="p-2 border rounded-md"
+              className="p-1.5 text-sm border rounded-md"
             >
               {hours.map((h) => (
                 <option key={h} value={h}>
@@ -74,11 +74,11 @@ const SleepCalculator = () => {
                 </option>
               ))}
             </select>
-            <span className="text-2xl">:</span>
+            <span className="text-xl">:</span>
             <select
               value={minute}
               onChange={(e) => setMinute(+e.target.value)}
-              className="p-2 border rounded-md"
+              className="p-1.5 text-sm border rounded-md"
             >
               {minutes.map((m) => (
                 <option key={m} value={m}>
@@ -90,7 +90,7 @@ const SleepCalculator = () => {
 
           <button
             onClick={calculateSleepCycles}
-            className="px-6 py-2 bg-sleep-600 hover:bg-sleep-700 text-white rounded-full"
+            className="px-4 py-1.5 text-sm bg-sleep-600 hover:bg-sleep-700 text-white rounded-full"
           >
             {t('calculate')}
           </button>
