@@ -15,7 +15,7 @@ const Header = () => {
               <h1 className="text-xl md:text-2xl font-display font-bold text-night-900">
                 SleepCalculator
                 <div className="text-[10px] md:text-xs font-normal text-night-700 mt-0.5 md:mt-1">
-                  by <a href="https://github.com/dEagleProg" target="_blank" rel="noopener noreferrer" className="hover:text-sleep-600 transition-colors"> dEagle</a>
+                  <a href="https://github.com/dEagleProg" target="_blank" rel="noopener noreferrer" className="hover:text-sleep-600 transition-colors cursor-pointer">by dEagle</a>
                 </div>
               </h1>
             </Link>
