@@ -42,9 +42,6 @@ const Privacy = () => {
                 
                 <h3 className="text-xl font-semibold text-night-900 mt-8 mb-4">{t('userRights')}</h3>
                 <p className="text-night-700 mb-6">{t('userRightsDescription')}</p>
-                
-                <h3 className="text-xl font-semibold text-night-900 mt-8 mb-4">{t('contactUs')}</h3>
-                <p className="text-night-700 mb-6">{t('contactUsDescription')}</p>
               </div>
             </div>
           </section>
