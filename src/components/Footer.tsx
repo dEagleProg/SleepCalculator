@@ -16,7 +16,8 @@ const Footer = () => {
           </div>
           
           <div className="flex items-center text-sm text-night-500">
-            <span>{t('madeWith')}</span>
+            <span>Made by </span>
+            <a href="https://github.com/dEagleProg" target="_blank" rel="noopener noreferrer" className="hover:text-sleep-600 transition-colors">dEagle</a>
             <Heart size={14} className="mx-1 text-sleep-500" />
             <span>{t('forBetterSleep')}</span>
           </div>
