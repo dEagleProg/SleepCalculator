@@ -3,11 +3,13 @@ import { Clock } from 'lucide-react';
 import SleepCycleDisplay from './SleepCycleDisplay';
 import { toast } from 'sonner';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 type CalculatorMode = 'sleep' | 'wake';
 
 const SleepCalculator = () => {
   const { t } = useLanguage();
+  const isMobile = useIsMobile();
   const [mode, setMode] = useState<CalculatorMode>('sleep');
   const [hour, setHour] = useState(0);
   const [minute, setMinute] = useState(0);
@@ -38,10 +40,12 @@ const SleepCalculator = () => {
 
     setCycleResults(results);
     
-    // Плавная прокрутка к результатам
-    setTimeout(() => {
-      resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 100);
+    // Плавная прокрутка к результатам только на мобильных устройствах
+    if (isMobile) {
+      setTimeout(() => {
+        resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    }
   };
 
   const toggleMode = () => {
