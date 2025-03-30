@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 type Language = 'en' | 'es' | 'ru';
@@ -369,6 +368,196 @@ export const translations: Translations = {
     en: 'Plan to fall asleep at one of these times to wake up feeling refreshed.',
     es: 'Planee dormirse a una de estas horas para despertarse sintiéndose renovado.',
     ru: 'Планируйте засыпать в одно из этих времен, чтобы проснуться отдохнувшим.',
+  },
+  // Privacy Policy
+  privacyTitle: {
+    en: 'Privacy Policy',
+    es: 'Política de Privacidad',
+    ru: 'Политика Конфиденциальности',
+  },
+  privacyDescription: {
+    en: 'At SleepCalculator, we take your privacy seriously. This policy outlines how we collect, use, and protect your personal information.',
+    es: 'En SleepCalculator, nos tomamos su privacidad muy en serio. Esta política describe cómo recopilamos, utilizamos y protegemos su información personal.',
+    ru: 'В SleepCalculator мы серьезно относимся к вашей конфиденциальности. Эта политика описывает, как мы собираем, используем и защищаем вашу личную информацию.',
+  },
+  dataCollection: {
+    en: 'Data Collection',
+    es: 'Recopilación de Datos',
+    ru: 'Сбор Данных',
+  },
+  dataCollectionDescription: {
+    en: 'We collect minimal personal information necessary to provide our sleep calculator service. This includes basic usage data and preferences.',
+    es: 'Recopilamos la información personal mínima necesaria para proporcionar nuestro servicio de calculadora de sueño. Esto incluye datos básicos de uso y preferencias.',
+    ru: 'Мы собираем минимальный объем личной информации, необходимый для предоставления нашего сервиса калькулятора сна. Это включает базовые данные об использовании и предпочтения.',
+  },
+  dataUsage: {
+    en: 'Data Usage',
+    es: 'Uso de Datos',
+    ru: 'Использование Данных',
+  },
+  dataUsageDescription: {
+    en: 'Your data is used solely to improve our service and provide you with personalized sleep recommendations. We never sell or share your information with third parties.',
+    es: 'Sus datos se utilizan únicamente para mejorar nuestro servicio y proporcionarle recomendaciones de sueño personalizadas. Nunca vendemos ni compartimos su información con terceros.',
+    ru: 'Ваши данные используются исключительно для улучшения нашего сервиса и предоставления вам персонализированных рекомендаций по сну. Мы никогда не продаем и не передаем вашу информацию третьим лицам.',
+  },
+  dataProtection: {
+    en: 'Data Protection',
+    es: 'Protección de Datos',
+    ru: 'Защита Данных',
+  },
+  dataProtectionDescription: {
+    en: 'We implement industry-standard security measures to protect your personal information from unauthorized access, alteration, or disclosure.',
+    es: 'Implementamos medidas de seguridad estándar de la industria para proteger su información personal de acceso, alteración o divulgación no autorizada.',
+    ru: 'Мы применяем стандартные меры безопасности для защиты вашей личной информации от несанкционированного доступа, изменения или разглашения.',
+  },
+  cookies: {
+    en: 'Cookies',
+    es: 'Cookies',
+    ru: 'Файлы Cookie',
+  },
+  cookiesDescription: {
+    en: 'We use cookies to enhance your experience and remember your preferences. You can control cookie settings through your browser.',
+    es: 'Utilizamos cookies para mejorar su experiencia y recordar sus preferencias. Puede controlar la configuración de cookies a través de su navegador.',
+    ru: 'Мы используем файлы cookie для улучшения вашего опыта и запоминания ваших предпочтений. Вы можете управлять настройками файлов cookie через браузер.',
+  },
+  userRights: {
+    en: 'Your Rights',
+    es: 'Sus Derechos',
+    ru: 'Ваши Права',
+  },
+  userRightsDescription: {
+    en: 'You have the right to access, correct, or delete your personal information. Contact us to exercise these rights.',
+    es: 'Tiene derecho a acceder, corregir o eliminar su información personal. Contáctenos para ejercer estos derechos.',
+    ru: 'Вы имеете право на доступ, исправление или удаление вашей личной информации. Свяжитесь с нами для осуществления этих прав.',
+  },
+
+  // Terms of Service
+  termsTitle: {
+    en: 'Terms of Service',
+    es: 'Términos de Servicio',
+    ru: 'Условия Использования',
+  },
+  termsDescription: {
+    en: 'By using SleepCalculator, you agree to these terms of service. Please read them carefully.',
+    es: 'Al utilizar SleepCalculator, acepta estos términos de servicio. Por favor, léalos detenidamente.',
+    ru: 'Используя SleepCalculator, вы соглашаетесь с этими условиями использования. Пожалуйста, внимательно прочитайте их.',
+  },
+  acceptance: {
+    en: 'Acceptance of Terms',
+    es: 'Aceptación de Términos',
+    ru: 'Принятие Условий',
+  },
+  acceptanceDescription: {
+    en: 'By accessing or using SleepCalculator, you agree to be bound by these terms and all applicable laws and regulations.',
+    es: 'Al acceder o utilizar SleepCalculator, acepta estar sujeto a estos términos y todas las leyes y regulaciones aplicables.',
+    ru: 'Получая доступ или используя SleepCalculator, вы соглашаетесь соблюдать эти условия и все применимые законы и правила.',
+  },
+  useLicense: {
+    en: 'Use License',
+    es: 'Licencia de Uso',
+    ru: 'Лицензия на Использование',
+  },
+  useLicenseDescription: {
+    en: 'We grant you a personal, non-exclusive, non-transferable license to use SleepCalculator for personal, non-commercial purposes.',
+    es: 'Le otorgamos una licencia personal, no exclusiva, no transferible para usar SleepCalculator con fines personales y no comerciales.',
+    ru: 'Мы предоставляем вам личную, неисключительную, непередаваемую лицензию на использование SleepCalculator для личных, некоммерческих целей.',
+  },
+  disclaimer: {
+    en: 'Disclaimer',
+    es: 'Descargo de Responsabilidad',
+    ru: 'Отказ от Ответственности',
+  },
+  disclaimerDescription: {
+    en: 'SleepCalculator is provided "as is" without any warranties. We are not responsible for any sleep-related decisions made based on our calculations.',
+    es: 'SleepCalculator se proporciona "tal cual" sin garantías. No somos responsables de las decisiones relacionadas con el sueño tomadas basadas en nuestros cálculos.',
+    ru: 'SleepCalculator предоставляется "как есть" без каких-либо гарантий. Мы не несем ответственности за решения, связанные со сном, принятые на основе наших расчетов.',
+  },
+  limitations: {
+    en: 'Limitations',
+    es: 'Limitaciones',
+    ru: 'Ограничения',
+  },
+  limitationsDescription: {
+    en: 'We are not liable for any damages arising from the use or inability to use SleepCalculator.',
+    es: 'No somos responsables de ningún daño derivado del uso o la imposibilidad de usar SleepCalculator.',
+    ru: 'Мы не несем ответственности за любые убытки, возникшие в результате использования или невозможности использования SleepCalculator.',
+  },
+  revisions: {
+    en: 'Revisions',
+    es: 'Revisiones',
+    ru: 'Изменения',
+  },
+  revisionsDescription: {
+    en: 'We reserve the right to modify these terms at any time. Continued use of SleepCalculator after changes constitutes acceptance of new terms.',
+    es: 'Nos reservamos el derecho de modificar estos términos en cualquier momento. El uso continuo de SleepCalculator después de los cambios constituye la aceptación de los nuevos términos.',
+    ru: 'Мы оставляем за собой право изменять эти условия в любое время. Продолжение использования SleepCalculator после изменений означает принятие новых условий.',
+  },
+
+  // Contact
+  contactTitle: {
+    en: 'Get in Touch',
+    es: 'Contáctenos',
+    ru: 'Свяжитесь с Нами',
+  },
+  contactDescription: {
+    en: 'Have questions or feedback? We\'d love to hear from you. Our team is here to help improve your sleep experience.',
+    es: '¿Tiene preguntas o comentarios? Nos encantaría saber de usted. Nuestro equipo está aquí para ayudarle a mejorar su experiencia de sueño.',
+    ru: 'Есть вопросы или отзывы? Мы будем рады услышать от вас. Наша команда готова помочь улучшить ваш опыт сна.',
+  },
+  email: {
+    en: 'Email Us',
+    es: 'Envíenos un Correo',
+    ru: 'Напишите Нам',
+  },
+  emailDescription: {
+    en: 'support@sleepcalculator.life',
+    es: 'support@sleepcalculator.life',
+    ru: 'support@sleepcalculator.life',
+  },
+  responseTime: {
+    en: 'Response Time',
+    es: 'Tiempo de Respuesta',
+    ru: 'Время Ответа',
+  },
+  responseTimeDescription: {
+    en: 'We typically respond within 24-48 hours during business days.',
+    es: 'Normalmente respondemos en 24-48 horas durante días laborables.',
+    ru: 'Мы обычно отвечаем в течение 24-48 часов в рабочие дни.',
+  },
+  contactForm: {
+    en: 'Send us a Message',
+    es: 'Envíenos un Mensaje',
+    ru: 'Отправьте Нам Сообщение',
+  },
+  name: {
+    en: 'Name',
+    es: 'Nombre',
+    ru: 'Имя',
+  },
+  namePlaceholder: {
+    en: 'Your name',
+    es: 'Su nombre',
+    ru: 'Ваше имя',
+  },
+  emailPlaceholder: {
+    en: 'your@email.com',
+    es: 'su@email.com',
+    ru: 'ваш@email.com',
+  },
+  message: {
+    en: 'Message',
+    es: 'Mensaje',
+    ru: 'Сообщение',
+  },
+  messagePlaceholder: {
+    en: 'Your message...',
+    es: 'Su mensaje...',
+    ru: 'Ваше сообщение...',
+  },
+  send: {
+    en: 'Send Message',
+    es: 'Enviar Mensaje',
+    ru: 'Отправить Сообщение',
   },
 };
 

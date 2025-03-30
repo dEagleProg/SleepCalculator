@@ -9,6 +9,9 @@ import Index from "./pages/Index";
 import About from "./pages/About";
 import SleepTips from "./pages/SleepTips";
 import NotFound from "./pages/NotFound";
+import Privacy from '@/pages/Privacy';
+import Terms from '@/pages/Terms';
+import Contact from '@/pages/Contact';
 
 const queryClient = new QueryClient();
 
@@ -24,6 +27,9 @@ const App = () => (
               <Route path="/" element={<Index />} />
               <Route path="/about" element={<About />} />
               <Route path="/sleep-tips" element={<SleepTips />} />
+              <Route path="/privacy" element={<Privacy />} />
+              <Route path="/terms" element={<Terms />} />
+              <Route path="/contact" element={<Contact />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>
