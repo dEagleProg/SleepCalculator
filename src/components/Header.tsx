@@ -6,15 +6,15 @@ import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
-    <header className="w-full py-6 mb-8">
+    <header className="w-full py-6 mb-4 md:mb-8">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex items-center gap-3">
             <MoonIcon size={24} className="text-sleep-600" />
             <Link to="/" className="hover:opacity-80 transition-opacity">
-              <h1 className="text-2xl font-display font-bold text-night-900">
+              <h1 className="text-xl md:text-2xl font-display font-bold text-night-900">
                 SleepCalculator
-                <div className="text-xs font-normal text-night-700 mt-1">by dEagle</div>
+                <div className="text-[10px] md:text-xs font-normal text-night-700 mt-0.5 md:mt-1">by dEagle</div>
               </h1>
             </Link>
           </div>
